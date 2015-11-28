@@ -1,5 +1,17 @@
 apply plugin: 'com.android.application'
 
+private int buildVersionCode() {
+    def majorNo = Integer.parseInt(major);
+    def minorNo = Integer.parseInt(minor);
+    def patchNo = Integer.parseInt(patch);
+
+    int versionCode = (majorNo * 1000000) + (minorNo * 10000) + (patchNo * 100);
+
+    println 'Computed versionCode = ' + versionCode
+
+    return versionCode;
+}
+
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
@@ -8,7 +20,7 @@ android {
         applicationId "ro.ksza.wksp"
         minSdkVersion 16
         targetSdkVersion 23
-        versionCode 1
+        versionCode buildVersionCode()
         versionName "1.0"
     }
     buildTypes {
