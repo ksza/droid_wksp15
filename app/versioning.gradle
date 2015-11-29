@@ -1,0 +1,13 @@
+ext {
+    buildVersionCode = {
+        def majorNo = Integer.parseInt(major);
+        def minorNo = Integer.parseInt(minor);
+        def patchNo = Integer.parseInt(patch);
+
+        int versionCode = (majorNo * 1000000) + (minorNo * 10000) + (patchNo * 100);
+
+        println 'Computed versionCode = ' + versionCode
+
+        return versionCode;
+    }
+}
