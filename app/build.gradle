@@ -38,12 +38,21 @@ android {
             keyPassword "android"
         }
     }
+    productFlavors {
+        pro {
+            applicationId "ro.ksza.wksp.pro"
+        }
+        free {
+            applicationId "ro.ksza.wksp.free"
+        }
+    }
     buildTypes {
         debug {
             debuggable true
             minifyEnabled false
             zipAlignEnabled true
             signingConfig signingConfigs.debug
+            applicationIdSuffix ".debug"
         }
         release {
             debuggable false
