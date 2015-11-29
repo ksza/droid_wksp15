@@ -21,3 +21,16 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+ext {
+    // build related values
+    compileSdkVersion = 23
+    buildToolsVersion = "23.0.2"
+    minSdkVersion = 16
+    targetSdkVersion = 23
+
+    // lib versions
+    supportLibVersion = "23.1.1"
+    slf4jDebugVersion = "1.6.1-RC1"
+    slf4jNopVersion = "1.6.1"
+}
