@@ -1,6 +1,18 @@
 apply plugin: 'com.android.application'
 apply from: 'versioning.gradle'
 
+private boolean isWindows() {
+    return System.properties['os.name'].toLowerCase().contains('windows')
+}
+
+private String currentUserDir() {
+    if (isWindows()) {
+        return System.getProperty("user.home");
+    } else {
+        return System.getenv("HOME");
+    }
+}
+
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
@@ -12,10 +24,33 @@ android {
         versionCode buildVersionCode()
         versionName "1.0"
     }
-    buildTypes {
+    signingConfigs {
+        debug {
+            storeFile file(currentUserDir() + "/.android/debug.keystore")
+            storePassword "android"
+            keyAlias "androiddebugkey"
+            keyPassword "android"
+        }
         release {
+            storeFile file(currentUserDir() + "/.android/debug.keystore")
+            storePassword "android"
+            keyAlias "androiddebugkey"
+            keyPassword "android"
+        }
+    }
+    buildTypes {
+        debug {
+            debuggable true
             minifyEnabled false
+            zipAlignEnabled true
+            signingConfig signingConfigs.debug
+        }
+        release {
+            debuggable false
+            minifyEnabled false
+            zipAlignEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 }
