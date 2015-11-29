@@ -62,13 +62,23 @@ android {
             signingConfig signingConfigs.release
         }
     }
+    // Always show the result of every unit test, even if it passes.
+    testOptions.unitTests.all {
+        testLogging {
+            events 'passed', 'skipped', 'failed', 'standardOut', 'standardError'
+        }
+    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
+
     compile "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
 
     debugCompile 'org.slf4j:slf4j-android:' + rootProject.ext.slf4jDebugVersion
     releaseCompile 'org.slf4j:slf4j-nop:' + rootProject.ext.slf4jNopVersion
+
+    testCompile "junit:junit:${rootProject.ext.junitVersion}"
+    testCompile "org.mockito:mockito-all:${rootProject.ext.mockitoVersion}"
+    testCompile 'org.hamcrest:hamcrest-all:' + rootProject.ext.hamcrestVersion
 }
