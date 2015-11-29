@@ -80,6 +80,9 @@ android {
             events 'passed', 'skipped', 'failed', 'standardOut', 'standardError'
         }
     }
+    lintOptions {
+        disable 'InvalidPackage'
+    }
 }
 
 dependencies {
@@ -87,9 +90,12 @@ dependencies {
 
     compile "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
     compile "com.android.support:support-annotations:${rootProject.ext.supportLibVersion}"
+    compile "com.jakewharton:butterknife:${rootProject.ext.butterknifeVersion}"
 
     debugCompile 'org.slf4j:slf4j-android:' + rootProject.ext.slf4jDebugVersion
     releaseCompile 'org.slf4j:slf4j-nop:' + rootProject.ext.slf4jNopVersion
+
+    /* Test dependencies */
 
     testCompile "junit:junit:${rootProject.ext.junitVersion}"
     testCompile "org.mockito:mockito-all:${rootProject.ext.mockitoVersion}"
