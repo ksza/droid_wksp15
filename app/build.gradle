@@ -68,4 +68,7 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.1.1'
+
+    debugCompile 'org.slf4j:slf4j-android:1.6.1-RC1'
+    releaseCompile 'org.slf4j:slf4j-nop:1.6.1'
 }
