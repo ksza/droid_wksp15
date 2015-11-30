@@ -18,9 +18,12 @@ import org.slf4j.LoggerFactory;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnItemClick;
+import retrofit.Callback;
+import retrofit.Response;
+import retrofit.Retrofit;
 import ro.ksza.wksp.R;
-import ro.ksza.wksp.omdb.task.ImprovedSearchTask;
-import ro.ksza.wksp.omdb.task.SearchListener;
+import ro.ksza.wksp.WkspApplication;
+import ro.ksza.wksp.omdb.OmdbApi;
 import ro.ksza.wksp.omdb.model.OmdbMovie;
 import ro.ksza.wksp.omdb.model.OmdbSearchMovies;
 
@@ -28,7 +31,7 @@ import ro.ksza.wksp.omdb.model.OmdbSearchMovies;
  * Helps search for a movie by title and displays the results in a list. Selecting
  * a movie from the list would return the selected result.
  */
-public class SearchMovieActivity extends AppCompatActivity implements SearchListener {
+public class SearchMovieActivity extends AppCompatActivity {
 
     private static final Logger logger = LoggerFactory.getLogger(SearchMovieActivity.class);
 
@@ -46,9 +49,13 @@ public class SearchMovieActivity extends AppCompatActivity implements SearchList
 
     private SearchMoviesAdapter moviesAdapter;
 
+    private OmdbApi omdbApi;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        omdbApi = WkspApplication.getInstance().getOmdbApi();
 
         setContentView(R.layout.activity_search);
 
@@ -89,8 +96,8 @@ public class SearchMovieActivity extends AppCompatActivity implements SearchList
     }
 
     public void initSearch() {
-        new ImprovedSearchTask(this).execute(searchText.getText().toString());
-        //        new SearchTask(this).execute(searchText.getText().toString());
+        omdbApi.searchByTitle(searchText.getText().toString())
+                .enqueue(new CallbackListener());
     }
 
     @OnItemClick(R.id.search_movies_list)
@@ -109,9 +116,17 @@ public class SearchMovieActivity extends AppCompatActivity implements SearchList
         return new Intent(context, SearchMovieActivity.class);
     }
 
-    @Override
-    public void searchReady(OmdbSearchMovies searchMovies) {
-        logger.debug("Search Ready: " + searchMovies);
-        moviesAdapter.replace(searchMovies.movies);
+    private class CallbackListener implements Callback<OmdbSearchMovies> {
+
+        @Override
+        public void onResponse(Response<OmdbSearchMovies> response, Retrofit retrofit) {
+            logger.debug("Search Ready: " + response.body());
+            moviesAdapter.replace(response.body().movies);
+        }
+
+        @Override
+        public void onFailure(Throwable t) {
+            logger.error("Error while requesting: {}", t.getMessage());
+        }
     }
 }

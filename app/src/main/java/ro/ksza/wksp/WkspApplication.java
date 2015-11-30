@@ -8,6 +8,10 @@ import com.squareup.okhttp.OkHttpClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import retrofit.GsonConverterFactory;
+import retrofit.Retrofit;
+import ro.ksza.wksp.omdb.OmdbApi;
+
 /**
  * Created by karoly.szanto on 29/11/15.
  */
@@ -24,16 +28,23 @@ public class WkspApplication extends Application {
     private Gson converter;
     private OkHttpClient client;
 
+    private OmdbApi omdbApi;
+
     @Override
     public void onCreate() {
         super.onCreate();
 
         converter = new Gson();
-        client = getClient();
+        client = createClient();
+        omdbApi = buildApi();
 
         instance = this;
 
         logger.debug("Created custom application");
+    }
+
+    public OmdbApi getOmdbApi() {
+        return omdbApi;
     }
 
     public Gson getGson() {
@@ -42,5 +53,19 @@ public class WkspApplication extends Application {
 
     public OkHttpClient getClient() {
         return client;
+    }
+
+    private OmdbApi buildApi() {
+        final Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://www.omdbapi.com")
+                .addConverterFactory(GsonConverterFactory.create(converter))
+                .client(client)
+                .build();
+
+        return retrofit.create(OmdbApi.class);
+    }
+
+    protected OkHttpClient createClient() {
+        return new OkHttpClient();
     }
 }
