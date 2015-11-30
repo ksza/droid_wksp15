@@ -12,6 +12,7 @@ import java.util.List;
 
 import ro.ksza.wksp.R;
 import ro.ksza.wksp.omdb.model.OmdbMovie;
+import ro.ksza.wksp.storage.CacheMoviesTask;
 
 /**
  * Handles a collection of MovieItems
@@ -53,6 +54,8 @@ public class MoviesAdapter extends RecyclerView.Adapter<MovieCardHolder> {
             items.add(position, item);
         }
         notifyItemInserted(position);
+
+        cacheWishlist();
     }
 
     public void insertItemAtEnd(final OmdbMovie item) {
@@ -62,5 +65,11 @@ public class MoviesAdapter extends RecyclerView.Adapter<MovieCardHolder> {
     public void removeItemAt(final int position) {
         items.remove(position);
         notifyItemRemoved(position);
+
+        cacheWishlist();
+    }
+
+    private void cacheWishlist() {
+        new CacheMoviesTask().execute(items);
     }
 }
