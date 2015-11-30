@@ -9,6 +9,7 @@ import com.google.gson.GsonBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import ro.ksza.wksp.WkspApplication;
 import ro.ksza.wksp.omdb.model.OmdbSearchMovies;
 
 /**
@@ -26,7 +27,7 @@ public abstract class BaseTask extends AsyncTask<String, Void, OmdbSearchMovies>
 
     public BaseTask(final SearchListener searchListener) {
         this.searchListener = searchListener;
-        converter = new GsonBuilder().create();
+        converter = WkspApplication.getInstance().getGson();
     }
 
     protected String createEncodedSearchUrl(final String movieTitle) {

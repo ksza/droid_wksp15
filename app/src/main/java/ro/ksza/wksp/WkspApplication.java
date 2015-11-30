@@ -2,6 +2,7 @@ package ro.ksza.wksp;
 
 import android.app.Application;
 
+import com.google.gson.Gson;
 import com.squareup.okhttp.OkHttpClient;
 
 import org.slf4j.Logger;
@@ -20,16 +21,26 @@ public class WkspApplication extends Application {
         return instance;
     }
 
+    private Gson converter;
+    private OkHttpClient client;
+
     @Override
     public void onCreate() {
         super.onCreate();
+
+        converter = new Gson();
+        client = getClient();
 
         instance = this;
 
         logger.debug("Created custom application");
     }
 
-    public OkHttpClient createClient() {
-        return new OkHttpClient();
+    public Gson getGson() {
+        return converter;
+    }
+
+    public OkHttpClient getClient() {
+        return client;
     }
 }

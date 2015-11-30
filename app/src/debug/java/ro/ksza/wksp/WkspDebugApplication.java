@@ -13,8 +13,8 @@ public class WkspDebugApplication extends WkspApplication {
     }
 
     @Override
-    public OkHttpClient createClient() {
-        final OkHttpClient client = super.createClient();
+    public OkHttpClient getClient() {
+        final OkHttpClient client = super.getClient();
         client.networkInterceptors().add(new StethoInterceptor());
         return client;
     }

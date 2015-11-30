@@ -18,7 +18,7 @@ public class ImprovedSearchTask extends BaseTask {
 
     public ImprovedSearchTask(final SearchListener searchListener) {
         super(searchListener);
-        client = WkspApplication.getInstance().createClient();
+        client = WkspApplication.getInstance().getClient();
     }
 
     @Override
