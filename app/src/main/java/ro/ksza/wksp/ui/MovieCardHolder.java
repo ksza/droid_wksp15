@@ -5,6 +5,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import ro.ksza.wksp.R;
@@ -28,5 +30,9 @@ public class MovieCardHolder extends RecyclerView.ViewHolder {
 
     public void map(final OmdbMovie item, final int position) {
         titleView.setText(item.title);
+
+        Picasso.with(itemView.getContext())
+                .load(item.posterUri.toString())
+                .into(posterView);
     }
 }
