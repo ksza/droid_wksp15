@@ -16,7 +16,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnItemClick;
 import retrofit.Callback;
 import retrofit.Response;
@@ -31,7 +30,7 @@ import ro.ksza.wksp.omdb.model.OmdbSearchMovies;
  * Helps search for a movie by title and displays the results in a list. Selecting
  * a movie from the list would return the selected result.
  */
-public class SearchMovieActivity extends AppCompatActivity {
+public class SearchMovieActivity extends BaseActivity {
 
     private static final Logger logger = LoggerFactory.getLogger(SearchMovieActivity.class);
 
@@ -40,9 +39,6 @@ public class SearchMovieActivity extends AppCompatActivity {
 
     @Bind(R.id.search_movies_list)
     ListView searchMovieList;
-
-    @Bind(R.id.toolbar)
-    Toolbar toolbar;
 
     @Bind(R.id.searchText)
     EditText searchText;
@@ -58,8 +54,6 @@ public class SearchMovieActivity extends AppCompatActivity {
         omdbApi = WkspApplication.getInstance().getOmdbApi();
 
         setContentView(R.layout.activity_search);
-
-        ButterKnife.bind(this);
 
         initToolbar();
 
@@ -84,7 +78,6 @@ public class SearchMovieActivity extends AppCompatActivity {
     }
 
     private void initToolbar() {
-        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {

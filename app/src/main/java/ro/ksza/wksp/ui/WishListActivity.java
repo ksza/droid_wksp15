@@ -23,7 +23,7 @@ import ro.ksza.wksp.R;
 import ro.ksza.wksp.omdb.model.OmdbMovie;
 import ro.ksza.wksp.storage.CachedMoviesLoader;
 
-public class WishListActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<OmdbMovie>> {
+public class WishListActivity extends BaseActivity implements LoaderManager.LoaderCallbacks<List<OmdbMovie>> {
 
     private static final Logger logger = LoggerFactory.getLogger(WishListActivity.class);
 
@@ -43,13 +43,23 @@ public class WishListActivity extends AppCompatActivity implements LoaderManager
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ButterKnife.bind(this);
-
         setUpRecycler();
 
         getLoaderManager().initLoader(CACHED_CONTENT_LOADER_ID, null, this);
 
+        initToolbar();
+
         logger.debug("WishListActivity created");
+    }
+
+    private void initToolbar() {
+        getSupportActionBar().setTitle(R.string.app_name);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
 
     private void setUpRecycler() {
