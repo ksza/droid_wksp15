@@ -94,6 +94,8 @@ dependencies {
     compile "com.android.support:recyclerview-v7:${rootProject.ext.supportLibVersion}"
     compile "com.android.support:cardview-v7:${rootProject.ext.supportLibVersion}"
 
+    compile "jp.wasabeef:recyclerview-animators:${recyclerViewAnimatorVersion}@aar"
+
     compile "com.squareup.picasso:picasso:${picassoVersion}"
 
     compile "com.jakewharton:butterknife:${rootProject.ext.butterknifeVersion}"

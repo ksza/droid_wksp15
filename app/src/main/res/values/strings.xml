@@ -5,4 +5,6 @@
     <string name="search_button">Search</string>
     <string name="empty_wishlist">Empty!</string>
     <string name="search_movie_hint">Movie Title</string>
+    <string name="undo_remove">Undo</string>
+    <string name="removed_from_wishlist">Removed!</string>
 </resources>

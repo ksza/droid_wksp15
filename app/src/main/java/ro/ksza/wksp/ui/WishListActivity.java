@@ -2,8 +2,11 @@ package ro.ksza.wksp.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 
 import org.slf4j.Logger;
@@ -35,13 +38,48 @@ public class WishListActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
+        setUpRecycler();
+
+        logger.debug("WishListActivity created");
+    }
+
+    private void setUpRecycler() {
         moviesListAdapter = new MoviesAdapter(this);
         cardListLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         moviesRecycler.setLayoutManager(cardListLayoutManager);
         moviesRecycler.setEmptyView(emptyRecyclerView);
         moviesRecycler.setAdapter(moviesListAdapter);
 
-        logger.debug("WishListActivity created");
+        ItemTouchHelper.SimpleCallback simpleItemTouchCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT|ItemTouchHelper.RIGHT) {
+
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
+
+                final int position = viewHolder.getAdapterPosition();
+                final OmdbMovie item = moviesListAdapter.getItemAt(position);
+
+                moviesListAdapter.removeItemAt(position);
+
+                final Snackbar snackBar = Snackbar.make(moviesRecycler, R.string.removed_from_wishlist, Snackbar.LENGTH_SHORT);
+                snackBar.setAction(R.string.undo_remove, new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+
+                        moviesListAdapter.insertItemAt(item, position);
+                    }
+                });
+                snackBar.show();
+            }
+        };
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleItemTouchCallback);
+        itemTouchHelper.attachToRecyclerView(moviesRecycler);
     }
 
     @OnClick(R.id.search_button)
