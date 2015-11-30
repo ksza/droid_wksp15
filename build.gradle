@@ -36,6 +36,8 @@ ext {
 
     butterknifeVersion = "7.0.1"
 
+    gsonVersion = "2.3.1"
+
     junitVersion = "4.12"
     mockitoVersion = "1.10.19"
     hamcrestVersion = "1.3"
