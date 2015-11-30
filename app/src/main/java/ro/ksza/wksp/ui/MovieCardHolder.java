@@ -8,7 +8,7 @@ import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import ro.ksza.wksp.R;
-import ro.ksza.wksp.omdb.model.OmdbMovieDetails;
+import ro.ksza.wksp.omdb.model.OmdbMovie;
 
 public class MovieCardHolder extends RecyclerView.ViewHolder {
 
@@ -26,8 +26,7 @@ public class MovieCardHolder extends RecyclerView.ViewHolder {
         ButterKnife.bind(this, itemView);
     }
 
-    public void map(final OmdbMovieDetails item, final int position) {
+    public void map(final OmdbMovie item, final int position) {
         titleView.setText(item.title);
-        actorsView.setText(item.actors);
     }
 }

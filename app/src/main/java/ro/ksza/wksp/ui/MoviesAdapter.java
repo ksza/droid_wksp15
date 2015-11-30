@@ -6,19 +6,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import ro.ksza.wksp.R;
 import ro.ksza.wksp.omdb.model.OmdbMovie;
-import ro.ksza.wksp.omdb.model.OmdbMovieDetails;
 
 /**
  * Handles a collection of MovieItems
  */
 public class MoviesAdapter extends RecyclerView.Adapter<MovieCardHolder> {
 
-    private List<OmdbMovieDetails> items = Collections.emptyList();
+    private List<OmdbMovie> items = new ArrayList<>();
 
     private final LayoutInflater inflater;
 
@@ -46,9 +46,17 @@ public class MoviesAdapter extends RecyclerView.Adapter<MovieCardHolder> {
         return items.get(position);
     }
 
-    public void insertItemAt(final OmdbMovieDetails item, final int position) {
-        items.add(position, item);
+    public void insertItemAt(final OmdbMovie item, final int position) {
+        if(items.size() == 0) {
+            items.add(item);
+        } else {
+            items.add(position, item);
+        }
         notifyItemInserted(position);
+    }
+
+    public void insertItemAtEnd(final OmdbMovie item) {
+        this.insertItemAt(item, getItemCount());
     }
 
     public void removeItemAt(final int position) {

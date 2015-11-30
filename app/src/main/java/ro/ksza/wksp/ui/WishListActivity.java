@@ -57,6 +57,8 @@ public class WishListActivity extends AppCompatActivity {
         if(requestCode == SearchMovieActivity.SEARCH_MOVIE_REQUEST_CODE && resultCode == RESULT_OK) {
             final OmdbMovie selectedMovie = (OmdbMovie) data.getExtras().getSerializable(SearchMovieActivity.SELECTED_ITEM_KEY);
             logger.debug("User selected movie: " + selectedMovie);
+
+            moviesListAdapter.insertItemAtEnd(selectedMovie);
         }
     }
 }
