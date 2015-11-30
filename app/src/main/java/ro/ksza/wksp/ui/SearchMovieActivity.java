@@ -7,8 +7,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ListView;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnItemClick;
 import ro.ksza.wksp.R;
 
 /**
@@ -16,6 +20,8 @@ import ro.ksza.wksp.R;
  * a movie from the list would return the selected result.
  */
 public class SearchMovieActivity extends AppCompatActivity {
+
+    private static final Logger logger = LoggerFactory.getLogger(SearchMovieActivity.class);
 
     @Bind(R.id.search_movies_list)
     ListView searchMovieList;
@@ -49,5 +55,11 @@ public class SearchMovieActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
+    }
+
+    @OnItemClick(R.id.search_movies_list)
+    public void onItemClick(int position) {
+        final String clickedItem = moviesAdapter.getItem(position);
+        logger.debug("Selected Movie: " + clickedItem);
     }
 }
