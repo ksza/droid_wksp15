@@ -9,7 +9,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import ro.ksza.wksp.ui.MainActivity;
+import ro.ksza.wksp.ui.WishListActivity;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
@@ -20,10 +20,10 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class MainActivityTest {
+public class WishListActivityTest {
 
     @Rule
-    public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(MainActivity.class);
+    public ActivityTestRule<WishListActivity> mActivityRule = new ActivityTestRule<>(WishListActivity.class);
 
     @Test
     public void checkHelloWorldView() {

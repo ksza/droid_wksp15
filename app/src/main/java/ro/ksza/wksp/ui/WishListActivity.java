@@ -12,9 +12,9 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ro.ksza.wksp.R;
 
-public class MainActivity extends AppCompatActivity {
+public class WishListActivity extends AppCompatActivity {
 
-    private static final Logger logger = LoggerFactory.getLogger(MainActivity.class);
+    private static final Logger logger = LoggerFactory.getLogger(WishListActivity.class);
 
     @Bind(R.id.hello_text_view)
     TextView helloView;
@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        logger.debug("MainActivity created");
+        logger.debug("WishListActivity created");
     }
 
     @OnClick(R.id.button)
