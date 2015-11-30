@@ -11,12 +11,15 @@ import org.junit.runner.RunWith;
 
 import ro.ksza.wksp.ui.WishListActivity;
 
+import static android.support.test.espresso.Espresso.getIdlingResources;
+import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.Espresso.registerIdlingResources;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
-
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static org.hamcrest.Matchers.anything;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
@@ -35,10 +38,9 @@ public class WishListActivityTest {
     @Test
     public void findButtonPerformClickAndCheckChangedText() {
         // Find Button and Click on it
-        onView(withId(R.id.button)).perform(click());
+        onView(withId(R.id.search_button)).perform(click());
 
-        // Find TextView and verify the correct text that is displayed
-        onView(withId(R.id.hello_text_view))
-                .check(matches(withText(mActivityRule.getActivity().getString(R.string.changed_hello_world))));
+        onData(anything()).inAdapterView(withId(R.id.search_movies_list))
+                .atPosition(0).check(matches(withText("Movie no 0")));
     }
 }

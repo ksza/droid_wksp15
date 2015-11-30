@@ -1,5 +1,6 @@
 package ro.ksza.wksp.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
@@ -29,8 +30,9 @@ public class WishListActivity extends AppCompatActivity {
         logger.debug("WishListActivity created");
     }
 
-    @OnClick(R.id.button)
+    @OnClick(R.id.search_button)
     public void onHelloButtonClick() {
-        helloView.setText(R.string.changed_hello_world);
+        final Intent searchMovieIntent = new Intent(this, SearchMovieActivity.class);
+        startActivity(searchMovieIntent);
     }
 }
