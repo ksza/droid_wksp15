@@ -11,7 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +21,7 @@ import butterknife.OnItemClick;
 import ro.ksza.wksp.R;
 import ro.ksza.wksp.omdb.SearchListener;
 import ro.ksza.wksp.omdb.SearchTask;
+import ro.ksza.wksp.omdb.model.OmdbMovie;
 import ro.ksza.wksp.omdb.model.OmdbSearchMovies;
 
 /**
@@ -56,7 +56,7 @@ public class SearchMovieActivity extends AppCompatActivity implements SearchList
 
         initToolbar();
 
-        moviesAdapter = new SearchMoviesAdapter(this, SearchMoviesAdapter.createDummyMoviesList(20));
+        moviesAdapter = new SearchMoviesAdapter(this);
         searchMovieList.setAdapter(moviesAdapter);
     }
 
@@ -94,7 +94,7 @@ public class SearchMovieActivity extends AppCompatActivity implements SearchList
 
     @OnItemClick(R.id.search_movies_list)
     public void onItemClick(int position) {
-        final String clickedItem = moviesAdapter.getItem(position);
+        final OmdbMovie clickedItem = moviesAdapter.getItem(position);
         logger.debug("Selected Movie: " + clickedItem);
 
         final Intent intent = this.getIntent();
@@ -111,5 +111,6 @@ public class SearchMovieActivity extends AppCompatActivity implements SearchList
     @Override
     public void searchReady(OmdbSearchMovies searchMovies) {
         logger.debug("Search Ready: " + searchMovies);
+        moviesAdapter.replace(searchMovies.movies);
     }
 }

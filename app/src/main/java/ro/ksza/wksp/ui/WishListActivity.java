@@ -12,6 +12,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ro.ksza.wksp.R;
+import ro.ksza.wksp.omdb.model.OmdbMovie;
 
 public class WishListActivity extends AppCompatActivity {
 
@@ -41,7 +42,7 @@ public class WishListActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode == SearchMovieActivity.SEARCH_MOVIE_REQUEST_CODE && resultCode == RESULT_OK) {
-            final String selectedMovie = data.getExtras().getString(SearchMovieActivity.SELECTED_ITEM_KEY);
+            final OmdbMovie selectedMovie = (OmdbMovie) data.getExtras().getSerializable(SearchMovieActivity.SELECTED_ITEM_KEY);
             logger.debug("User selected movie: " + selectedMovie);
         }
     }

@@ -2,6 +2,7 @@ package ro.ksza.wksp.omdb.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.net.URI;
 
 /**
@@ -14,7 +15,7 @@ import java.net.URI;
  * }
 */
 
-public class OmdbMovie extends OmdbResponse {
+public class OmdbMovie extends OmdbResponse implements Serializable {
 
     @SerializedName("Title")
     public String title;
