@@ -90,6 +90,7 @@ dependencies {
 
     compile "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
     compile "com.android.support:support-annotations:${rootProject.ext.supportLibVersion}"
+    compile "com.android.support:design:${rootProject.ext.supportLibVersion}"
     compile "com.jakewharton:butterknife:${rootProject.ext.butterknifeVersion}"
 
     debugCompile 'org.slf4j:slf4j-android:' + rootProject.ext.slf4jDebugVersion

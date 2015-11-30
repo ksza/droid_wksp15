@@ -3,4 +3,6 @@
     <string name="hello_world">Hello World!</string>
     <string name="changed_hello_world">Changed Hello World!</string>
     <string name="search_button">Search</string>
+    <string name="empty_wishlist">Empty!</string>
+    <string name="search_movie_hint">Movie Title</string>
 </resources>
