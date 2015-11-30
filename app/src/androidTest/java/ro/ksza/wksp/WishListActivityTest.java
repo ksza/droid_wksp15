@@ -11,10 +11,8 @@ import org.junit.runner.RunWith;
 
 import ro.ksza.wksp.ui.WishListActivity;
 
-import static android.support.test.espresso.Espresso.getIdlingResources;
 import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.Espresso.registerIdlingResources;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
@@ -31,7 +29,7 @@ public class WishListActivityTest {
     @Test
     public void checkHelloWorldView() {
         // Find TextView and verify the correct text that is displayed
-        onView(withId(R.id.hello_text_view))
+        onView(withId(R.id.search_button))
                 .check(matches(withText(mActivityRule.getActivity().getString(R.string.hello_world))));
     }
 
