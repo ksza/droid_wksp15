@@ -47,6 +47,12 @@ public class MoviesAdapter extends RecyclerView.Adapter<MovieCardHolder> {
         return items.get(position);
     }
 
+    public void setItems(final List<OmdbMovie> movies) {
+        items = movies;
+        notifyDataSetChanged();
+    }
+
+
     public void insertItemAt(final OmdbMovie item, final int position) {
         if(items.size() == 0) {
             items.add(item);
