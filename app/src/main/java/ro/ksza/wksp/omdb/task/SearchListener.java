@@ -1,4 +1,4 @@
-package ro.ksza.wksp.omdb;
+package ro.ksza.wksp.omdb.task;
 
 import ro.ksza.wksp.omdb.model.OmdbSearchMovies;
 

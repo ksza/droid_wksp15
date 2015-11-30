@@ -1,4 +1,4 @@
-package ro.ksza.wksp.omdb;
+package ro.ksza.wksp.omdb.task;
 
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;

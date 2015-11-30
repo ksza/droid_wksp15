@@ -1,7 +1,4 @@
-package ro.ksza.wksp.omdb;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+package ro.ksza.wksp.omdb.task;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

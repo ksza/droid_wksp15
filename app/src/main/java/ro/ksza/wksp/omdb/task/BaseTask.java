@@ -1,11 +1,10 @@
-package ro.ksza.wksp.omdb;
+package ro.ksza.wksp.omdb.task;
 
 import android.net.Uri;
 import android.os.AsyncTask;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.squareup.okhttp.OkHttpClient;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -95,6 +95,11 @@ dependencies {
     compile "com.jakewharton:butterknife:${rootProject.ext.butterknifeVersion}"
 
     compile "com.squareup.okhttp:okhttp:${okhttpVersion}"
+
+    // Retrofit
+    compile "com.squareup.retrofit:retrofit:${retrofitVersion}"
+    compile "com.squareup.retrofit:converter-gson:${retrofitVersion}"
+
     compile "com.google.code.gson:gson:${rootProject.ext.gsonVersion}"
 
     debugCompile 'com.facebook.stetho:stetho:1.2.0'

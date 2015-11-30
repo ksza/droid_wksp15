@@ -19,9 +19,8 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnItemClick;
 import ro.ksza.wksp.R;
-import ro.ksza.wksp.omdb.ImprovedSearchTask;
-import ro.ksza.wksp.omdb.SearchListener;
-import ro.ksza.wksp.omdb.SearchTask;
+import ro.ksza.wksp.omdb.task.ImprovedSearchTask;
+import ro.ksza.wksp.omdb.task.SearchListener;
 import ro.ksza.wksp.omdb.model.OmdbMovie;
 import ro.ksza.wksp.omdb.model.OmdbSearchMovies;
 
