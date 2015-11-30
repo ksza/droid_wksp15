@@ -39,6 +39,8 @@ ext {
     okhttpVersion = "2.6.0"
     gsonVersion = "2.3.1"
 
+    stethoVersion = "1.2.0"
+
     junitVersion = "4.12"
     mockitoVersion = "1.10.19"
     hamcrestVersion = "1.3"

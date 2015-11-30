@@ -6,6 +6,7 @@ import com.squareup.okhttp.Response;
 
 import java.io.IOException;
 
+import ro.ksza.wksp.WkspApplication;
 import ro.ksza.wksp.omdb.model.OmdbSearchMovies;
 
 /**
@@ -17,7 +18,7 @@ public class ImprovedSearchTask extends BaseTask {
 
     public ImprovedSearchTask(final SearchListener searchListener) {
         super(searchListener);
-        client = new OkHttpClient();
+        client = WkspApplication.getInstance().createClient();
     }
 
     @Override

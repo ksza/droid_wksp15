@@ -97,7 +97,10 @@ dependencies {
     compile "com.squareup.okhttp:okhttp:${okhttpVersion}"
     compile "com.google.code.gson:gson:${rootProject.ext.gsonVersion}"
 
+    debugCompile 'com.facebook.stetho:stetho:1.2.0'
+    debugCompile 'com.facebook.stetho:stetho-okhttp:1.2.0'
     debugCompile 'org.slf4j:slf4j-android:' + rootProject.ext.slf4jDebugVersion
+
     releaseCompile 'org.slf4j:slf4j-nop:' + rootProject.ext.slf4jNopVersion
 
     /* Test dependencies */

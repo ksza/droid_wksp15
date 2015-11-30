@@ -2,6 +2,8 @@ package ro.ksza.wksp;
 
 import android.app.Application;
 
+import com.squareup.okhttp.OkHttpClient;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,5 +27,9 @@ public class WkspApplication extends Application {
         instance = this;
 
         logger.debug("Created custom application");
+    }
+
+    public OkHttpClient createClient() {
+        return new OkHttpClient();
     }
 }
