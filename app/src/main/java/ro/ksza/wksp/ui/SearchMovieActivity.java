@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -89,8 +90,11 @@ public class SearchMovieActivity extends BaseActivity {
     }
 
     public void initSearch() {
-        omdbApi.searchByTitle(searchText.getText().toString())
-                .enqueue(new CallbackListener());
+        final String searchString = searchText.getText().toString();
+        if(!TextUtils.isEmpty(searchString)) {
+            omdbApi.searchByTitle(searchString)
+                    .enqueue(new CallbackListener());
+        }
     }
 
     @OnItemClick(R.id.search_movies_list)
@@ -114,7 +118,9 @@ public class SearchMovieActivity extends BaseActivity {
         @Override
         public void onResponse(Response<OmdbSearchMovies> response, Retrofit retrofit) {
             logger.debug("Search Ready: " + response.body());
-            moviesAdapter.replace(response.body().movies);
+            if(response.body() != null && response.body().movies != null) {
+                moviesAdapter.replace(response.body().movies);
+            }
         }
 
         @Override
