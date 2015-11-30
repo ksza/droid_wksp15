@@ -32,7 +32,17 @@ public class WishListActivity extends AppCompatActivity {
 
     @OnClick(R.id.search_button)
     public void onHelloButtonClick() {
-        final Intent searchMovieIntent = new Intent(this, SearchMovieActivity.class);
-        startActivity(searchMovieIntent);
+        final Intent searchMovieIntent = SearchMovieActivity.createSearchMovieIntent(this);
+        startActivityForResult(searchMovieIntent, SearchMovieActivity.SEARCH_MOVIE_REQUEST_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == SearchMovieActivity.SEARCH_MOVIE_REQUEST_CODE && resultCode == RESULT_OK) {
+            final String selectedMovie = data.getExtras().getString(SearchMovieActivity.SELECTED_ITEM_KEY);
+            logger.debug("User selected movie: " + selectedMovie);
+        }
     }
 }

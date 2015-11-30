@@ -1,6 +1,7 @@
 package ro.ksza.wksp.ui;
 
-import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -22,6 +23,9 @@ import ro.ksza.wksp.R;
 public class SearchMovieActivity extends AppCompatActivity {
 
     private static final Logger logger = LoggerFactory.getLogger(SearchMovieActivity.class);
+
+    public static final int SEARCH_MOVIE_REQUEST_CODE = 1;
+    public static final String SELECTED_ITEM_KEY = "SELECTED_ITEM_KEY";
 
     @Bind(R.id.search_movies_list)
     ListView searchMovieList;
@@ -61,5 +65,15 @@ public class SearchMovieActivity extends AppCompatActivity {
     public void onItemClick(int position) {
         final String clickedItem = moviesAdapter.getItem(position);
         logger.debug("Selected Movie: " + clickedItem);
+
+        final Intent intent = this.getIntent();
+        intent.putExtra(SELECTED_ITEM_KEY, clickedItem);
+        this.setResult(RESULT_OK, intent);
+
+        finish();
+    }
+
+    public static Intent createSearchMovieIntent(final Context context) {
+        return new Intent(context, SearchMovieActivity.class);
     }
 }
