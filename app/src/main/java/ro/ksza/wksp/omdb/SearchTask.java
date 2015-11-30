@@ -1,8 +1,5 @@
 package ro.ksza.wksp.omdb;
 
-import android.net.Uri;
-import android.os.AsyncTask;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -18,16 +15,12 @@ import java.net.URL;
 
 import ro.ksza.wksp.omdb.model.OmdbSearchMovies;
 
-public class SearchTask extends AsyncTask<String, Void, OmdbSearchMovies> {
+public class SearchTask extends BaseTask {
 
     private static final Logger logger = LoggerFactory.getLogger(SearchTask.class);
 
-    private final static String baseUrl = "http://www.omdbapi.com/";
-
-    private SearchListener searchListener;
-
     public SearchTask(final SearchListener searchListener) {
-        this.searchListener = searchListener;
+        super(searchListener);
     }
 
     @Override
@@ -43,27 +36,11 @@ public class SearchTask extends AsyncTask<String, Void, OmdbSearchMovies> {
 
         logger.debug("String result: " + searchMovies);
 
-        Gson converter = new GsonBuilder().create();
         return converter.fromJson(searchMovies, OmdbSearchMovies.class);
     }
 
-    @Override
-    protected void onPostExecute(OmdbSearchMovies omdbSearchMovies) {
-        super.onPostExecute(omdbSearchMovies);
-        logger.debug("DONE: " + omdbSearchMovies);
-
-        if(searchListener != null) {
-            searchListener.searchReady(omdbSearchMovies);
-        }
-    }
-
     private String doSearch(final String movieTitle) throws IOException {
-        return doGet(Uri.parse(baseUrl)
-                .buildUpon()
-                .appendQueryParameter("s", movieTitle)
-                .build()
-                .toString()
-        );
+        return doGet(createEncodedSearchUrl(movieTitle));
     }
 
     /**

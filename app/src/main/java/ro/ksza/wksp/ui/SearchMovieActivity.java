@@ -19,6 +19,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnItemClick;
 import ro.ksza.wksp.R;
+import ro.ksza.wksp.omdb.ImprovedSearchTask;
 import ro.ksza.wksp.omdb.SearchListener;
 import ro.ksza.wksp.omdb.SearchTask;
 import ro.ksza.wksp.omdb.model.OmdbMovie;
@@ -89,7 +90,8 @@ public class SearchMovieActivity extends AppCompatActivity implements SearchList
     }
 
     public void initSearch() {
-        new SearchTask(this).execute(searchText.getText().toString());
+        new ImprovedSearchTask(this).execute(searchText.getText().toString());
+        //        new SearchTask(this).execute(searchText.getText().toString());
     }
 
     @OnItemClick(R.id.search_movies_list)

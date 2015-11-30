@@ -94,6 +94,7 @@ dependencies {
 
     compile "com.jakewharton:butterknife:${rootProject.ext.butterknifeVersion}"
 
+    compile "com.squareup.okhttp:okhttp:${okhttpVersion}"
     compile "com.google.code.gson:gson:${rootProject.ext.gsonVersion}"
 
     debugCompile 'org.slf4j:slf4j-android:' + rootProject.ext.slf4jDebugVersion
