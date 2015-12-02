@@ -10,12 +10,20 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true" />
 
+    <TextView
+        android:id="@+id/anchor"
+        android:text="Anchor TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/checker"
+        android:layout_alignParentRight="true" />
+
     <Button
         android:id="@+id/checker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
         android:text="Check it!" />
 
 </RelativeLayout>
