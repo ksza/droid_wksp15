@@ -35,7 +35,7 @@ public class CachedMoviesLoader extends AsyncTaskLoader<List<OmdbMovie>> {
 
     public CachedMoviesLoader(Context context) {
         super(context);
-        converter = WkspApplication.getInstance().getGson();
+        converter = new Gson();
     }
 
     /**

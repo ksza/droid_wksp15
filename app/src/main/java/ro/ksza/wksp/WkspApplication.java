@@ -34,11 +34,11 @@ public class WkspApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
+        instance = this;
+
         converter = new Gson();
         client = createClient();
         omdbApi = buildApi();
-
-        instance = this;
 
         logger.debug("Created custom application");
     }
