@@ -13,6 +13,8 @@ import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 
+import static android.support.test.espresso.matcher.ViewMatchers.isChecked;
+import static android.support.test.espresso.matcher.ViewMatchers.isNotChecked;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
@@ -32,11 +34,17 @@ public class MainActivityTest {
 
     @Test
     public void findButtonPerformClickAndCheckChangedText() {
+
         // Find Button and Click on it
         onView(withId(R.id.button)).perform(click());
 
         // Find TextView and verify the correct text that is displayed
-        onView(withId(R.id.hello_text_view))
-                .check(matches(withText(mActivityRule.getActivity().getString(R.string.changed_hello_world))));
+        onView(withId(R.id.checkable)).check(matches(isChecked()));
+
+        // Find Button and Click on it
+        onView(withId(R.id.button)).perform(click());
+
+        // Find TextView and verify the correct text that is displayed
+        onView(withId(R.id.checkable)).check(matches(isNotChecked()));
     }
 }

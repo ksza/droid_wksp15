@@ -1,5 +1,6 @@
 package ro.ksza.wksp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 helloView.setText(R.string.changed_hello_world);
+                MainActivity.this.startActivity(new Intent(MainActivity.this, SecondActivity.class));
             }
         });
 
